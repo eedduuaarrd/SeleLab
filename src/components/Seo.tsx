@@ -7,7 +7,7 @@ import {
   SEO_OG_IMAGE,
   seoAbsoluteUrl,
 } from '../config/seo'
-import { APP_VERSION, SITE_URL } from '../config/site'
+import { SITE_URL } from '../config/site'
 import { SUBJECT_INDEX_FOR_SCHEMA } from '../data/subjectSeoMeta'
 
 type SeoHeadProps = {
@@ -86,38 +86,28 @@ function buildJsonLdGraph(baseUrl: string, includeAssignaturesList: boolean) {
       publisher: { '@id': `${baseUrl}/#organization` },
       copyrightHolder: { '@id': `${baseUrl}/#organization` },
     },
+    // Sense node WebApplication: el test de Google suggereix aggregateRating (opcional); no inventem valoracions.
     {
       '@type': 'EducationalOrganization',
       '@id': `${baseUrl}/#organization`,
       name: 'SeleLab',
       url: baseUrl,
       description:
-        'Aplicació web gratuïta per practicar la selectivitat (PAU) a Catalunya: tests sele, testos selectivitat i materials alineats amb els models oficials de la Generalitat.',
+        'Aplicació web gratuïta per practicar la selectivitat (PAU) a Catalunya: tests sele, testos selectivitat i materials alineats amb els models oficials de la Generalitat. Navegador modern amb JavaScript (HTML5).',
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/favicon.svg`,
       },
       sameAs: [],
       areaServed: { '@type': 'AdministrativeArea', name: 'Catalunya' },
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': `${baseUrl}/#webapp`,
-      name: 'SeleLab',
-      url: baseUrl,
-      applicationCategory: 'EducationalApplication',
-      operatingSystem: 'Web',
-      browserRequirements: 'Navegador modern amb JavaScript activat (HTML5).',
-      featureList: [
-        'Tests de selectivitat (PAU) per assignatura',
-        'Enunciats oficials amb enllaç als PDF de la Generalitat (Canal Universitats)',
-        'Simulador d’examen amb temporitzador opcional',
-        'Pràctica interactiva sense compte (progrés al navegador)',
+      knowsAbout: [
+        'Prova d’accés a la universitat (PAU)',
+        'Selectivitat Catalunya',
+        'Tests i testos de sele per assignatura',
+        'Models oficials Generalitat de Catalunya — Canal Universitats',
+        'Simulador d’examen PAU',
+        'Pràctica interactiva sense compte',
       ],
-      screenshot: `${baseUrl}/og.svg`,
-      softwareVersion: APP_VERSION,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
-      isAccessibleForFree: true,
     },
   ]
 
@@ -146,7 +136,7 @@ function buildJsonLdGraph(baseUrl: string, includeAssignaturesList: boolean) {
   return graph
 }
 
-/** Dades estructurades JSON-LD (WebSite, Organization, WebApplication; ItemList a inici/assignatures). */
+/** Dades estructurades JSON-LD (WebSite, EducationalOrganization, ItemList a inici/assignatures). */
 export function SeoJsonLd() {
   const { pathname } = useLocation()
   const baseUrl = SITE_URL.replace(/\/$/, '')
