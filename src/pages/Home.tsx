@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
@@ -16,19 +15,6 @@ const areas: { id: SubjectArea | 'totes'; label: string }[] = [
   { id: 'humanitats', label: 'Humanitats' },
   { id: 'artistica', label: 'Artística' },
 ]
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0 },
-}
 
 export function Home() {
   const { pathname } = useLocation()
@@ -69,12 +55,7 @@ export function Home() {
 
       {!isAssignaturesOnly ? (
         <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="min-w-0"
-          >
+          <div className="home-animate-hero min-w-0">
             <div className="flex flex-wrap items-baseline gap-3">
               <span className="font-mono-label text-[11px] text-[var(--accent)]">v.0</span>
               <span className="h-px flex-1 bg-[var(--line)]" aria-hidden />
@@ -106,13 +87,10 @@ export function Home() {
                 La pràctica interactiva és dins de cada assignatura (segona activitat).
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.aside
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="flex flex-col gap-3 border border-[var(--line)] bg-[var(--surface)] p-4 sm:p-5"
+          <aside
+            className="home-animate-aside flex flex-col gap-3 border border-[var(--line)] bg-[var(--surface)] p-4 sm:p-5"
             aria-label="Resum"
           >
             <p className="font-mono-label text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">
@@ -147,7 +125,7 @@ export function Home() {
                 Una pregunta cada vegada, amb enllaç directe al PDF de la convocatòria.
               </p>
             </div>
-          </motion.aside>
+          </aside>
         </section>
       ) : (
         <header className="border-b border-[var(--line)] pb-8">
@@ -198,10 +176,7 @@ export function Home() {
           </div>
         </div>
 
-        <motion.ul
-          variants={container}
-          initial="hidden"
-          animate="show"
+        <ul
           key={filter}
           className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
@@ -210,11 +185,10 @@ export function Home() {
             const totalAct = s.activities.length
             const featured = i === 0 && filter === 'totes'
             return (
-              <motion.li
+              <li
                 key={s.id}
-                variants={item}
-                layout
-                className={featured ? 'sm:col-span-2' : ''}
+                className={`home-card-animate ${featured ? 'sm:col-span-2' : ''}`}
+                style={{ animationDelay: `${i * 50}ms` }}
               >
                 <Link
                   to={`/assignatura/${s.id}`}
@@ -244,10 +218,10 @@ export function Home() {
                     </span>
                   </div>
                 </Link>
-              </motion.li>
+              </li>
             )
           })}
-        </motion.ul>
+        </ul>
       </section>
     </div>
   )
