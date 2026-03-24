@@ -28,3 +28,5 @@ scripts/.cache/
 
 # Local tooling / scrapes
 .firecrawl/
+
+.vercel
