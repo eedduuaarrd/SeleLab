@@ -19,6 +19,9 @@
     "vite": "^8.0.1"
   },
   "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/syne": "^5.2.7",
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.38.0",
     "react": "^19.2.4",
