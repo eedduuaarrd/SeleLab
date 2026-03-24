@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
+import { SeoHead } from '../components/Seo'
 import { SubjectVisual } from '../components/SubjectVisual'
 import { getSubject, getSubjectQuestionCounts } from '../data/bank'
 import {
@@ -22,15 +23,23 @@ export function SubjectDetail() {
 
   if (!s) {
     return (
-      <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
-        <p className="text-[var(--ink-muted)]">Assignatura no trobada.</p>
-        <Link
-          to="/"
-          className="font-mono-label mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
-        >
-          ← Inici
-        </Link>
-      </div>
+      <>
+        <SeoHead
+          title="Assignatura no trobada"
+          description="Aquesta assignatura no existeix al banc SeleLab."
+          path={`/assignatura/${subjectId}`}
+          noindex
+        />
+        <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
+          <p className="text-[var(--ink-muted)]">Assignatura no trobada.</p>
+          <Link
+            to="/"
+            className="font-mono-label mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
+          >
+            ← Inici
+          </Link>
+        </div>
+      </>
     )
   }
 
@@ -89,8 +98,11 @@ export function SubjectDetail() {
     </ul>
   )
 
+  const subjectDesc = `${s.name}. ${s.description}`
+
   return (
     <div className="space-y-12">
+      <SeoHead title={`${s.short} — selectivitat`} description={subjectDesc} path={`/assignatura/${subjectId}`} />
       <Breadcrumbs
         items={[
           { label: 'Inici', to: '/' },

@@ -1,3 +1,6 @@
 # https://selelab.xyz
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://selelab.xyz/sitemap.xml

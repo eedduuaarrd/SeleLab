@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
+import { SeoHead } from '../components/Seo'
+import { SEO_DEFAULT_DESCRIPTION } from '../config/seo'
 import { SubjectVisual } from '../components/SubjectVisual'
 import { subjects } from '../data/bank'
 import type { SubjectArea } from '../types/content'
@@ -33,6 +35,12 @@ export function Home() {
   const isAssignaturesOnly = pathname === '/assignatures'
   const [filter, setFilter] = useState<SubjectArea | 'totes'>('totes')
 
+  const seoTitle = isAssignaturesOnly ? 'Totes les assignatures' : 'Inici'
+  const seoPath = isAssignaturesOnly ? '/assignatures' : '/'
+  const seoDesc = isAssignaturesOnly
+    ? 'Llista d’assignatures de la selectivitat (PAU) a Catalunya: accés als models oficials de la Generalitat i pràctica interactiva SeleLab per matèria.'
+    : SEO_DEFAULT_DESCRIPTION
+
   const list = useMemo(() => {
     if (filter === 'totes') return subjects
     return subjects.filter((s) => s.area === filter)
@@ -49,6 +57,7 @@ export function Home() {
 
   return (
     <div className="space-y-16 sm:space-y-24">
+      <SeoHead title={seoTitle} description={seoDesc} path={seoPath} />
       {isAssignaturesOnly ? (
         <Breadcrumbs
           items={[

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
+import { SeoHead } from '../components/Seo'
 import { subjects } from '../data/bank'
 import { buildSimulationExam, verbatimPoolSize } from '../data/examArchive'
 import { MODELS_PAU_INDEX } from '../data/examArchive/constants'
@@ -17,6 +18,9 @@ import { OrderBlock } from '../components/questions/OrderBlock'
 import { TrueFalseBlock } from '../components/questions/TrueFalseBlock'
 
 type Phase = 'setup' | 'run' | 'done'
+
+const SIMULATOR_SEO_DESC =
+  'Simulador de selectivitat (PAU): genera un full amb preguntes de l’arxiu oficial per assignatura, temporitzador opcional i enllaç als PDF de la Generalitat.'
 
 const COUNT_OPTIONS = [10, 15, 20, 25] as const
 const TIMER_OPTIONS = [0, 60, 90, 120] as const
@@ -122,7 +126,9 @@ export function ExamSimulation() {
 
   if (phase === 'setup') {
     return (
-      <div className="space-y-12">
+      <>
+        <SeoHead title="Simulador d’examen PAU" description={SIMULATOR_SEO_DESC} path="/simulador" />
+        <div className="space-y-12">
         <Breadcrumbs
           items={[
             { label: 'Inici', to: '/' },
@@ -263,6 +269,7 @@ export function ExamSimulation() {
           </aside>
         </div>
       </div>
+      </>
     )
   }
 
@@ -270,7 +277,9 @@ export function ExamSimulation() {
     const finalScore = score
     const max = questions.length || 1
     return (
-      <div className="space-y-10">
+      <>
+        <SeoHead title="Simulador d’examen PAU" description={SIMULATOR_SEO_DESC} path="/simulador" />
+        <div className="space-y-10">
         <Breadcrumbs
           items={[
             { label: 'Inici', to: '/' },
@@ -310,12 +319,15 @@ export function ExamSimulation() {
           </div>
         </div>
       </div>
+      </>
     )
   }
 
   if (!q || total === 0) {
     return (
-      <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
+      <>
+        <SeoHead title="Simulador d’examen PAU" description={SIMULATOR_SEO_DESC} path="/simulador" />
+        <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
         <p className="text-[var(--ink-muted)]">No s’ha pogut generar el full. Torna a la configuració.</p>
         <button
           type="button"
@@ -325,11 +337,14 @@ export function ExamSimulation() {
           Enrere
         </button>
       </div>
+      </>
     )
   }
 
   return (
-    <div className="space-y-8">
+    <>
+      <SeoHead title="Simulador d’examen PAU" description={SIMULATOR_SEO_DESC} path="/simulador" />
+      <div className="space-y-8">
       <Breadcrumbs
         items={[
           { label: 'Inici', to: '/' },
@@ -518,5 +533,6 @@ export function ExamSimulation() {
         </motion.article>
       </AnimatePresence>
     </div>
+    </>
   )
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://selelab.xyz/</loc><changefreq>weekly</changefreq><priority>1</priority></url>
+  <url><loc>https://selelab.xyz/assignatures</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://selelab.xyz/simulador</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://selelab.xyz/sobre</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://selelab.xyz/privacitat</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://selelab.xyz/cookies</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://selelab.xyz/avis-legal</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/catala</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/castella</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/angles</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/historia</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/filosofia</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/matematiques</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/fisica</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/quimica</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/biologia</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/cmc</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://selelab.xyz/assignatura/historia-art</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+</urlset>

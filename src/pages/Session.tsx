@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getActivity } from '../data/bank'
 import { evaluate, emptyCtx, type SessionCtx } from '../lib/sessionEval'
 import { shuffleIndices } from '../lib/shuffle'
 import { recordResult } from '../lib/progress'
 import { Breadcrumbs } from '../components/Breadcrumbs'
+import { SeoHead } from '../components/Seo'
 import { ExamSourceLink } from '../components/ExamSourceLink'
 import { BucketSortBlock } from '../components/questions/BucketSortBlock'
 import { ClickWordBlock } from '../components/questions/ClickWordBlock'
@@ -16,6 +17,7 @@ import { TrueFalseBlock } from '../components/questions/TrueFalseBlock'
 
 export function Session() {
   const { subjectId = '', activityId = '' } = useParams()
+  const { pathname } = useLocation()
   const nav = useNavigate()
   const pack = useMemo(() => getActivity(subjectId, activityId), [subjectId, activityId])
 
@@ -52,15 +54,23 @@ export function Session() {
 
   if (!pack || !activity || !subject || !q) {
     return (
-      <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
-        <p className="text-[var(--ink-muted)]">No s’ha trobat l’activitat.</p>
-        <Link
-          to="/"
-          className="font-mono-label mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
-        >
-          Inici
-        </Link>
-      </div>
+      <>
+        <SeoHead
+          title="Activitat no trobada"
+          description="La sessió de pràctica sol·licitada no existeix o ha estat retirada."
+          path={pathname}
+          noindex
+        />
+        <div className="border border-[var(--line)] bg-[var(--surface)] p-10 text-center">
+          <p className="text-[var(--ink-muted)]">No s’ha trobat l’activitat.</p>
+          <Link
+            to="/"
+            className="font-mono-label mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
+          >
+            Inici
+          </Link>
+        </div>
+      </>
     )
   }
 
@@ -97,6 +107,11 @@ export function Session() {
 
   return (
     <div className="space-y-10">
+      <SeoHead
+        title={`${activity.title} — ${subject.short}`}
+        description={activity.blurb}
+        path={pathname}
+      />
       <Breadcrumbs
         items={[
           { label: 'Inici', to: '/' },

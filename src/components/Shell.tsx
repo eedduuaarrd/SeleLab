@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { SeoJsonLd } from './Seo'
 import { SITE_URL } from '../config/site'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -12,6 +13,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 export function Shell() {
   return (
     <div className="app-backdrop relative min-h-dvh overflow-x-hidden">
+      <SeoJsonLd />
       <div className="relative z-10">
         <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--page)]/85 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-4 py-4 sm:px-6">
@@ -55,6 +57,32 @@ export function Shell() {
             Les preguntes «Proves d’accés» provenen dels PDF oficials. La «Pràctica interactiva» és un banc
             SeleLab per matèria (enllaç al portal de models PAU).
           </p>
+          <nav
+            className="mx-auto mt-6 flex max-w-2xl flex-wrap justify-center gap-x-4 gap-y-2 px-4 font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--ink-muted)] sm:px-6"
+            aria-label="Peu de pàgina"
+          >
+            <NavLink to="/sobre" className="hover:text-[var(--accent)]">
+              Sobre
+            </NavLink>
+            <span aria-hidden className="text-[var(--line-strong)]">
+              ·
+            </span>
+            <NavLink to="/privacitat" className="hover:text-[var(--accent)]">
+              Privacitat
+            </NavLink>
+            <span aria-hidden className="text-[var(--line-strong)]">
+              ·
+            </span>
+            <NavLink to="/cookies" className="hover:text-[var(--accent)]">
+              Cookies
+            </NavLink>
+            <span aria-hidden className="text-[var(--line-strong)]">
+              ·
+            </span>
+            <NavLink to="/avis-legal" className="hover:text-[var(--accent)]">
+              Avís legal
+            </NavLink>
+          </nav>
           <p className="mx-auto mt-4 max-w-2xl px-4 text-center sm:px-6">
             <a
               href={SITE_URL}
