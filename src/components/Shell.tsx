@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { SeoJsonLd } from './Seo'
 import { SITE_URL } from '../config/site'
@@ -17,7 +18,7 @@ export function Shell() {
       <div className="relative z-10">
         <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--page)]/85 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-4 py-4 sm:px-6">
-            <NavLink to="/" className="group flex items-start gap-3">
+            <NavLink to="/" className="group flex items-start gap-3" aria-label="SeleLab — anar a l’inici">
               <span
                 className="font-mono-label mt-1 hidden text-[10px] leading-none text-[var(--ink-muted)] sm:block"
                 aria-hidden
@@ -50,7 +51,21 @@ export function Shell() {
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 sm:pt-14">
-          <Outlet />
+          <Suspense
+            fallback={
+              <div
+                className="flex min-h-[45vh] items-center justify-center"
+                role="status"
+                aria-live="polite"
+              >
+                <span className="font-mono-label text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">
+                  Carregant…
+                </span>
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
         </main>
         <footer className="border-t border-[var(--line)] py-10">
           <p className="mx-auto max-w-2xl px-4 text-center font-mono-label text-[10px] uppercase leading-relaxed tracking-[0.12em] text-[var(--ink-muted)] sm:px-6">
@@ -88,7 +103,7 @@ export function Shell() {
               href={SITE_URL}
               className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--accent)] hover:underline"
             >
-              selelab.xyz
+              SeleLab — selelab.xyz
             </a>
           </p>
         </footer>

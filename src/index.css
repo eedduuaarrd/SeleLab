@@ -25,6 +25,8 @@
     color: var(--ink);
     background-color: var(--page);
     -webkit-font-smoothing: antialiased;
+    /* Redueix el salt visual quan arriben les fonts web (millora CLS amb font-display: swap) */
+    font-synthesis: none;
   }
 }
 

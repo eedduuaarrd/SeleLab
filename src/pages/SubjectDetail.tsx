@@ -72,6 +72,7 @@ export function SubjectDetail() {
               <Link
                 to={`/assignatura/${s.id}/${a.id}`}
                 className="group flex flex-col gap-3 border border-[var(--line)] bg-[var(--surface)] p-5 transition hover:border-[var(--line-strong)] hover:bg-[var(--surface-raised)] sm:flex-row sm:items-center sm:justify-between"
+                aria-label={`Començar: ${a.title} (${s.short})`}
               >
                 <div className="min-w-0">
                   <h3 className="font-display text-lg font-bold text-[var(--ink)]">{a.title}</h3>

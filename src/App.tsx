@@ -1,13 +1,21 @@
+import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Shell } from './components/Shell'
-import { About } from './pages/About'
-import { Cookies } from './pages/Cookies'
-import { ExamSimulation } from './pages/ExamSimulation'
 import { Home } from './pages/Home'
-import { LegalNotice } from './pages/LegalNotice'
-import { Privacy } from './pages/Privacy'
-import { Session } from './pages/Session'
-import { SubjectDetail } from './pages/SubjectDetail'
+
+const ExamSimulation = lazy(() =>
+  import('./pages/ExamSimulation').then((m) => ({ default: m.ExamSimulation })),
+)
+const SubjectDetail = lazy(() =>
+  import('./pages/SubjectDetail').then((m) => ({ default: m.SubjectDetail })),
+)
+const Session = lazy(() => import('./pages/Session').then((m) => ({ default: m.Session })))
+const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })))
+const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })))
+const Cookies = lazy(() => import('./pages/Cookies').then((m) => ({ default: m.Cookies })))
+const LegalNotice = lazy(() =>
+  import('./pages/LegalNotice').then((m) => ({ default: m.LegalNotice })),
+)
 
 export function App() {
   return (

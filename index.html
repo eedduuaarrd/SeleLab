@@ -2,15 +2,16 @@
 <html lang="ca">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#14141a" />
+    <!-- Meta descripció al HTML estàtic: Lighthouse i cercadors la veuen abans de l’SPA -->
     <meta
       name="description"
       content="Practica la selectivitat amb tests interactius i preguntes extretes dels PDF oficials de la Generalitat de Catalunya (models PAU). Assignatures, simulador i enllaços a Selecat i el Canal Universitats."
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#14141a" />
     <link rel="canonical" href="https://selelab.xyz/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://selelab.xyz/" />
@@ -23,10 +24,19 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- CSS de Google Fonts sense bloquejar el primer render (millora FCP/LCP) -->
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Syne:wght@500;600;700;800&display=swap"
+      />
+    </noscript>
     <!-- Afegiu la meta de verificació de Google Search Console quan la tingueu:
     <meta name="google-site-verification" content="CODI_VERIFICACIO" />
     -->

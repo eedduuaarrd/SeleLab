@@ -90,6 +90,7 @@ export function Home() {
               <Link
                 to="/assignatures"
                 className="font-mono-label inline-flex items-center gap-2 bg-[var(--accent)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--page)] transition hover:bg-[var(--accent-hover)]"
+                aria-label="Veure totes les assignatures de selectivitat (PAU)"
               >
                 Llista d’assignatures
                 <span aria-hidden>→</span>
@@ -97,6 +98,7 @@ export function Home() {
               <Link
                 to="/simulador"
                 className="font-mono-label inline-flex items-center gap-2 border border-[var(--line-strong)] bg-[var(--surface)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ink)] transition hover:border-[var(--accent)]"
+                aria-label="Obrir el simulador d’examen PAU"
               >
                 Simulador PAU
               </Link>
@@ -159,6 +161,7 @@ export function Home() {
           <Link
             to="/"
             className="font-mono-label mt-6 inline-flex text-[11px] uppercase tracking-[0.18em] text-[var(--accent)] hover:underline"
+            aria-label="Tornar a la pàgina d’inici de SeleLab"
           >
             ← Tornar a l’inici
           </Link>
@@ -216,6 +219,7 @@ export function Home() {
                 <Link
                   to={`/assignatura/${s.id}`}
                   className={`group flex h-full min-h-[9rem] flex-col border border-[var(--line)] bg-[var(--surface)] p-5 transition ${s.accent} hover:bg-[var(--surface-raised)] sm:min-h-[10.5rem] ${featured ? 'lg:min-h-[11rem]' : ''}`}
+                  aria-label={`Obrir assignatura ${s.short}: ${s.name}`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <span className="font-display text-2xl font-bold text-[var(--ink-muted)]" aria-hidden>
@@ -236,7 +240,7 @@ export function Home() {
                       </span>
                     )}
                     <span className="font-mono-label text-[10px] uppercase tracking-[0.2em] text-[var(--accent)] group-hover:translate-x-0.5 transition-transform">
-                      obrir →
+                      obrir fitxa
                     </span>
                   </div>
                 </Link>
