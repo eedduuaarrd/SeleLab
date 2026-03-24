@@ -1,14 +1,10 @@
-import { useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useLocation } from 'react-router-dom'
 import {
   SEO_DEFAULT_DESCRIPTION,
   SEO_KEYWORDS,
   SEO_OG_IMAGE,
   seoAbsoluteUrl,
 } from '../config/seo'
-import { SITE_URL } from '../config/site'
-import { SUBJECT_INDEX_FOR_SCHEMA } from '../data/subjectSeoMeta'
 
 type SeoHeadProps = {
   /** Títol sense sufix; es mostra com «Títol · SeleLab». */
@@ -22,6 +18,7 @@ type SeoHeadProps = {
 /**
  * Meta title, description, canonical, Open Graph i Twitter per ruta.
  * Cal envoltar l’app amb `HelmetProvider` (vegeu `main.tsx`).
+ * El graf Schema.org principal (WebSite, Organization, ItemList) va a l’HTML estàtic via `vite.config.ts`.
  */
 export function SeoHead({ title, description = SEO_DEFAULT_DESCRIPTION, path, noindex }: SeoHeadProps) {
   const fullTitle = title.includes('SeleLab') ? title : `${title} · SeleLab`
@@ -63,98 +60,6 @@ export function SeoHead({ title, description = SEO_DEFAULT_DESCRIPTION, path, no
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-    </Helmet>
-  )
-}
-
-function buildJsonLdGraph(baseUrl: string, includeAssignaturesList: boolean) {
-  const graph: Record<string, unknown>[] = [
-    {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}/#website`,
-      url: baseUrl,
-      name: 'SeleLab',
-      alternateName: [
-        'SeleLab tests selectivitat',
-        'tests sele PAU',
-        'testos selectivitat Catalunya',
-        'test selectivitat Catalunya',
-      ],
-      description: SEO_DEFAULT_DESCRIPTION,
-      keywords: SEO_KEYWORDS,
-      inLanguage: 'ca-ES',
-      publisher: { '@id': `${baseUrl}/#organization` },
-      copyrightHolder: { '@id': `${baseUrl}/#organization` },
-    },
-    // Sense node WebApplication: el test de Google suggereix aggregateRating (opcional); no inventem valoracions.
-    {
-      '@type': 'EducationalOrganization',
-      '@id': `${baseUrl}/#organization`,
-      name: 'SeleLab',
-      url: baseUrl,
-      description:
-        'Aplicació web gratuïta per practicar la selectivitat (PAU) a Catalunya: tests sele, testos selectivitat i materials alineats amb els models oficials de la Generalitat. Navegador modern amb JavaScript (HTML5).',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/favicon.svg`,
-      },
-      sameAs: [],
-      areaServed: { '@type': 'AdministrativeArea', name: 'Catalunya' },
-      knowsAbout: [
-        'Prova d’accés a la universitat (PAU)',
-        'Selectivitat Catalunya',
-        'Tests i testos de sele per assignatura',
-        'Models oficials Generalitat de Catalunya — Canal Universitats',
-        'Simulador d’examen PAU',
-        'Pràctica interactiva sense compte',
-      ],
-    },
-  ]
-
-  if (includeAssignaturesList) {
-    graph.push({
-      '@type': 'ItemList',
-      '@id': `${baseUrl}/#assignatures-itemlist`,
-      name: 'Assignatures PAU — tests de sele i selectivitat (SeleLab)',
-      description:
-        'Llista d’assignatures de la selectivitat (PAU) amb enllaç a la fitxa de cada matèria.',
-      numberOfItems: SUBJECT_INDEX_FOR_SCHEMA.length,
-      itemListElement: SUBJECT_INDEX_FOR_SCHEMA.map((s, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        item: {
-          '@type': 'WebPage',
-          '@id': `${baseUrl}/assignatura/${s.id}`,
-          name: s.name,
-          url: `${baseUrl}/assignatura/${s.id}`,
-          inLanguage: 'ca-ES',
-        },
-      })),
-    })
-  }
-
-  return graph
-}
-
-/** Dades estructurades JSON-LD (WebSite, EducationalOrganization, ItemList a inici/assignatures). */
-export function SeoJsonLd() {
-  const { pathname } = useLocation()
-  const baseUrl = SITE_URL.replace(/\/$/, '')
-
-  const data = useMemo(() => {
-    const includeList = pathname === '/' || pathname === '/assignatures'
-    return {
-      '@context': 'https://schema.org',
-      '@graph': buildJsonLdGraph(baseUrl, includeList),
-    }
-  }, [baseUrl, pathname])
-
-  return (
-    <Helmet>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-      />
     </Helmet>
   )
 }

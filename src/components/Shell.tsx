@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { SeoJsonLd } from './Seo'
 import { SITE_URL } from '../config/site'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -14,7 +13,6 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 export function Shell() {
   return (
     <div className="app-backdrop relative min-h-dvh overflow-x-hidden">
-      <SeoJsonLd />
       <div className="relative z-10">
         <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--page)]/85 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-4 py-4 sm:px-6">
