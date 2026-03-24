@@ -98,7 +98,25 @@ export function Shell() {
               Avís legal
             </NavLink>
           </nav>
-          <p className="mx-auto mt-4 max-w-2xl px-4 text-center sm:px-6">
+          <p className="mx-auto mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 text-center sm:px-6">
+            <a
+              href="/sitemap.xml"
+              className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--ink-muted)] hover:text-[var(--accent)]"
+            >
+              Mapa del lloc (XML)
+            </a>
+            <span className="font-mono-label text-[10px] text-[var(--line-strong)]" aria-hidden>
+              ·
+            </span>
+            <a
+              href="/ads.txt"
+              className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--ink-muted)] hover:text-[var(--accent)]"
+            >
+              ads.txt
+            </a>
+            <span className="font-mono-label text-[10px] text-[var(--line-strong)]" aria-hidden>
+              ·
+            </span>
             <a
               href={SITE_URL}
               className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--accent)] hover:underline"

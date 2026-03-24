@@ -78,6 +78,14 @@ export function Privacy() {
         <section className="space-y-4 text-sm leading-relaxed text-[var(--ink-muted)]">
           <h2 className="font-display text-lg font-bold text-[var(--ink)]">5. Publicitat (Google AdSense)</h2>
           <p>
+            El fitxer <strong className="text-[var(--ink)]">ads.txt</strong> a l’arrel del domini identifica l’editor
+            autoritzat de publicitat (Google) i ajuda a prevenir frau; el podeu consultar a{' '}
+            <a href="/ads.txt" className="text-[var(--accent)] underline-offset-2 hover:underline">
+              /ads.txt
+            </a>
+            .
+          </p>
+          <p>
             Si s’integren anuncis mitjançant Google AdSense o serveis similars, Google pot utilitzar galetes o
             identificadors segons la seva política i la vostra configuració (incloent-hi personalització d’anuncis). En
             aquest cas, es mostrarà informació addicional i, si cal, es demanarà el consentiment segons la normativa

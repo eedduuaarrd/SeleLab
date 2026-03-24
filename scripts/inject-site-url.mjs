@@ -1,6 +1,8 @@
 /**
  * Després de `vite build`, reemplaça https://selelab.xyz per VITE_SITE_URL al dist/
  * (index.html, robots, sitemap, manifest, og.svg). Producció: https://selelab.xyz (o deixa VITE_SITE_URL buit).
+ * - sitemap.xml: __LASTMOD__ → data ISO del build (Search Console).
+ * La meta de verificació de Search Console va a scripts/inject-gsc.mjs (després de preload-fonts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { dirname, join } from 'path'
@@ -11,6 +13,7 @@ const dist = join(__dirname, '..', 'dist')
 const raw = process.env.VITE_SITE_URL?.trim()
 const origin = (raw && raw.startsWith('http') ? raw : 'https://selelab.xyz').replace(/\/$/, '')
 const host = new URL(origin).hostname
+const lastmod = new Date().toISOString().slice(0, 10)
 
 const files = ['index.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest', 'og.svg']
 
@@ -21,8 +24,11 @@ for (const f of files) {
     continue
   }
   let s = readFileSync(p, 'utf8')
-  const next = s.replace(/https:\/\/selelab\.xyz/g, origin).replace(/selelab\.xyz/g, host)
+  let next = s.replace(/https:\/\/selelab\.xyz/g, origin).replace(/selelab\.xyz/g, host)
+  if (f === 'sitemap.xml') {
+    next = next.replace(/__LASTMOD__/g, lastmod)
+  }
   if (next !== s) writeFileSync(p, next)
 }
 
-console.log(`[inject-site-url] origen: ${origin}`)
+console.log(`[inject-site-url] origen: ${origin} · lastmod sitemap: ${lastmod}`)

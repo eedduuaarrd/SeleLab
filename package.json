@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/inject-site-url.mjs && node scripts/preload-fonts.mjs",
+    "build": "tsc && vite build && node scripts/inject-site-url.mjs && node scripts/preload-fonts.mjs && node scripts/inject-gsc.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {

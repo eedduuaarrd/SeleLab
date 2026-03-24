@@ -34,6 +34,7 @@ export function SeoHead({ title, description = SEO_DEFAULT_DESCRIPTION, path, no
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
       <link rel="canonical" href={canonical} />
       <link rel="alternate" hrefLang="ca" href={canonical} />
+      <link rel="alternate" hrefLang="x-default" href={canonical} />
 
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="SeleLab" />
@@ -68,14 +69,21 @@ export function SeoJsonLd() {
         description: SEO_DEFAULT_DESCRIPTION,
         inLanguage: 'ca-ES',
         publisher: { '@id': `${url}/#organization` },
+        copyrightHolder: { '@id': `${url}/#organization` },
       },
       {
-        '@type': 'Organization',
+        '@type': 'EducationalOrganization',
         '@id': `${url}/#organization`,
         name: 'SeleLab',
         url,
-        logo: `${url}/favicon.svg`,
+        description:
+          'Aplicació web gratuïta per practicar la selectivitat (PAU) a Catalunya amb materials alineats amb els models oficials.',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${url}/favicon.svg`,
+        },
         sameAs: [],
+        areaServed: { '@type': 'AdministrativeArea', name: 'Catalunya' },
       },
       {
         '@type': 'WebApplication',
