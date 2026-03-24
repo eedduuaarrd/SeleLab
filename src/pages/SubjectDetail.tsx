@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { SeoHead } from '../components/Seo'
@@ -10,6 +11,7 @@ import {
   SELECAT_BASE_URL,
 } from '../data/selecat/gencatFromSelecat'
 import { SUBJECT_SAMPLE_SELECAT_CODE } from '../data/selecat/subjectSampleCodes'
+import { SITE_URL } from '../config/site'
 import { getProgress } from '../lib/progress'
 import type { Activity } from '../types/content'
 
@@ -99,11 +101,39 @@ export function SubjectDetail() {
     </ul>
   )
 
-  const subjectDesc = s.description.trim() ? `${s.name}. ${s.description}` : s.name
+  const subjectDesc = s.description.trim()
+    ? `${s.name}. ${s.description}`
+    : `${s.name}. Tests sele i selectivitat (PAU): models oficials i pràctica interactiva SeleLab.`
+
+  const origin = SITE_URL.replace(/\/$/, '')
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inici', item: `${origin}/` },
+      { '@type': 'ListItem', position: 2, name: 'Assignatures', item: `${origin}/assignatures` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: s.short,
+        item: `${origin}/assignatura/${subjectId}`,
+      },
+    ],
+  }
 
   return (
     <div className="space-y-12">
-      <SeoHead title={`${s.short} — selectivitat`} description={subjectDesc} path={`/assignatura/${subjectId}`} />
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        />
+      </Helmet>
+      <SeoHead
+        title={`${s.short} — tests sele i selectivitat (PAU)`}
+        description={subjectDesc}
+        path={`/assignatura/${subjectId}`}
+      />
       <Breadcrumbs
         items={[
           { label: 'Inici', to: '/' },

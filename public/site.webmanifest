@@ -1,14 +1,14 @@
 {
-  "name": "SeleLab — Pràctica interactiva per a la selectivitat",
+  "name": "SeleLab — tests sele i selectivitat (PAU)",
   "short_name": "SeleLab",
-  "description": "Tests interactius i preguntes extretes dels PDF oficials de la Generalitat de Catalunya (models PAU).",
+  "description": "Tests de sele i selectivitat (PAU) a Catalunya: testos dels models oficials de la Generalitat, pràctica interactiva per assignatura i simulador. Sense compte.",
   "categories": ["education", "productivity"],
+  "lang": "ca",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0a0a0c",
   "theme_color": "#14141a",
-  "lang": "ca",
   "icons": [
     {
       "src": "/favicon.svg",

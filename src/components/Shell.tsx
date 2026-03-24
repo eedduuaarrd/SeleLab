@@ -30,7 +30,7 @@ export function Shell() {
                   SeleLab
                 </span>
                 <p className="font-mono-label mt-0.5 text-[10px] uppercase tracking-[0.28em] text-[var(--ink-muted)]">
-                  pau · models oficials · generalitat
+                  sele · tests selectivitat · pau · generalitat
                 </p>
               </div>
             </NavLink>

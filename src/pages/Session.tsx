@@ -108,8 +108,8 @@ export function Session() {
   return (
     <div className="space-y-10">
       <SeoHead
-        title={`${activity.title} — ${subject.short}`}
-        description={activity.blurb}
+        title={`${activity.title} — ${subject.short} · selectivitat PAU`}
+        description={`${activity.blurb} Tests i testos de selectivitat (PAU) — ${subject.name}.`}
         path={pathname}
       />
       <Breadcrumbs

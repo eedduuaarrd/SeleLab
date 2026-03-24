@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { SeoHead } from '../components/Seo'
-import { SEO_DEFAULT_DESCRIPTION } from '../config/seo'
+import { SEO_DEFAULT_DESCRIPTION, SEO_DEFAULT_TITLE } from '../config/seo'
 import { SubjectVisual } from '../components/SubjectVisual'
 import { subjects } from '../data/bank'
 import type { SubjectArea } from '../types/content'
@@ -21,10 +21,12 @@ export function Home() {
   const isAssignaturesOnly = pathname === '/assignatures'
   const [filter, setFilter] = useState<SubjectArea | 'totes'>('totes')
 
-  const seoTitle = isAssignaturesOnly ? 'Totes les assignatures' : 'Inici'
+  const seoTitle = isAssignaturesOnly
+    ? 'Totes les assignatures — sele, tests i selectivitat (PAU)'
+    : SEO_DEFAULT_TITLE
   const seoPath = isAssignaturesOnly ? '/assignatures' : '/'
   const seoDesc = isAssignaturesOnly
-    ? 'Llista d’assignatures de la selectivitat (PAU) a Catalunya: accés als models oficials de la Generalitat i pràctica interactiva SeleLab per matèria.'
+    ? 'Llista d’assignatures de la selectivitat (PAU): tests sele, testos selectivitat i models oficials per matèria. Pràctica interactiva SeleLab i enllaços Canal Universitats.'
     : SEO_DEFAULT_DESCRIPTION
 
   const list = useMemo(() => {
@@ -63,9 +65,13 @@ export function Home() {
             <h1 className="font-display mt-6 max-w-[18ch] text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold leading-[0.95] tracking-tight text-[var(--ink)]">
               Pràctica que es nota el dia de l’examen.
             </h1>
+            <p className="mt-3 max-w-xl text-sm font-medium leading-snug text-[var(--accent)]">
+              SeleLab · tests de sele i selectivitat (PAU) · Catalunya
+            </p>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--ink-muted)]">
-              Preguntes extretes literalment dels PDF d’examen de la Generalitat: cada ítem enllaça al
-              document oficial. Sense compte: el progrés es queda al teu navegador.
+              Preguntes extretes literalment dels PDF d’examen de la Generalitat (testos i tests de
+              selectivitat): cada ítem enllaça al document oficial. Sense compte: el progrés es queda al
+              teu navegador.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
@@ -204,13 +210,9 @@ export function Home() {
                   <h3 className="font-display mt-4 text-lg font-bold leading-tight text-[var(--ink)]">
                     {s.short}
                   </h3>
-                  {s.description ? (
-                    <p className="mt-2 line-clamp-2 flex-1 text-sm leading-snug text-[var(--ink-muted)]">
-                      {s.description}
-                    </p>
-                  ) : (
-                    <div className="min-h-0 flex-1" aria-hidden />
-                  )}
+                  <p className="mt-2 line-clamp-2 flex-1 text-sm leading-snug text-[var(--ink-muted)]">
+                    {s.description.trim() || s.name}
+                  </p>
                   <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-4">
                     {totalAct > 0 && (
                       <span className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--ink-muted)]">

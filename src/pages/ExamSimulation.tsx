@@ -20,7 +20,7 @@ import { TrueFalseBlock } from '../components/questions/TrueFalseBlock'
 type Phase = 'setup' | 'run' | 'done'
 
 const SIMULATOR_SEO_DESC =
-  'Simulador de selectivitat (PAU): genera un full amb preguntes de l’arxiu oficial per assignatura, temporitzador opcional i enllaç als PDF de la Generalitat.'
+  'Simulador de tests sele i selectivitat (PAU): genera un full amb testos de l’arxiu oficial per assignatura, temporitzador opcional i enllaç als PDF de la Generalitat.'
 
 const COUNT_OPTIONS = [10, 15, 20, 25] as const
 const TIMER_OPTIONS = [0, 60, 90, 120] as const
