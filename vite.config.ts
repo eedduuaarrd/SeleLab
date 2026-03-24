@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { buildStaticFaqSectionHtml } from './src/lib/faqSeoHtml'
 import { buildSiteJsonLdData } from './src/lib/jsonLdSiteGraph'
 
 /** Origen públic per al JSON-LD estàtic (alineat amb `scripts/inject-site-url.mjs`). */
@@ -9,7 +10,10 @@ function siteOrigin(): string {
   return (raw && raw.startsWith('http') ? raw : 'https://selelab.xyz').replace(/\/$/, '')
 }
 
-/** Injeta Schema.org al `<head>` del HTML servit (dev + dist): els rastrejadors el veuen sense React. */
+/**
+ * Injeta JSON-LD + secció FAQ visible al HTML (dev + dist).
+ * La Prova de resultats enriquits de Google només mostra «elements» per a tipus amb snippet (p. ex. FAQ), no per WebSite sol.
+ */
 function injectJsonLdPlugin() {
   return {
     name: 'inject-jsonld-html',
@@ -17,7 +21,12 @@ function injectJsonLdPlugin() {
       const data = buildSiteJsonLdData(siteOrigin())
       const json = JSON.stringify(data).replace(/</g, '\\u003c')
       const tag = `    <script type="application/ld+json">${json}</script>`
-      return html.replace('</head>', `${tag}\n</head>`)
+      let out = html.replace('</head>', `${tag}\n</head>`)
+      out = out.replace(
+        '<div id="root"></div>',
+        `<div id="root"></div>\n    ${buildStaticFaqSectionHtml()}`,
+      )
+      return out
     },
   }
 }

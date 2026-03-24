@@ -1,4 +1,5 @@
 import { SEO_DEFAULT_DESCRIPTION, SEO_KEYWORDS } from '../config/seoCopy'
+import { FAQ_SEO_ITEMS } from '../data/faqSeo'
 import { SUBJECT_INDEX_FOR_SCHEMA } from '../data/subjectSeoMeta'
 
 /**
@@ -66,6 +67,18 @@ export function buildSiteJsonLdData(baseUrl: string): {
           name: s.name,
           url: `${b}/assignatura/${s.id}`,
           inLanguage: 'ca-ES',
+        },
+      })),
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${b}/#faq`,
+      mainEntity: FAQ_SEO_ITEMS.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a,
         },
       })),
     },
