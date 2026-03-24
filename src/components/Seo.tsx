@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import {
   SEO_DEFAULT_DESCRIPTION,
@@ -17,8 +18,8 @@ type SeoHeadProps = {
 
 /**
  * Meta title, description, canonical, Open Graph i Twitter per ruta.
- * Cal envoltar l’app amb `HelmetProvider` (vegeu `main.tsx`).
- * El graf Schema.org principal (WebSite, Organization, ItemList) va a l’HTML estàtic via `vite.config.ts`.
+ * El títol es posa amb `document.title` (i un sol `<title>` a index.html) per evitar duplicats que Helmet de vegades crea.
+ * `referrer` només a index.html. Schema.org principal va al HTML estàtic (vite.config.ts).
  */
 export function SeoHead({ title, description = SEO_DEFAULT_DESCRIPTION, path, noindex }: SeoHeadProps) {
   const fullTitle = title.includes('SeleLab') ? title : `${title} · SeleLab`
@@ -26,13 +27,15 @@ export function SeoHead({ title, description = SEO_DEFAULT_DESCRIPTION, path, no
   const ogImage = SEO_OG_IMAGE
   const ogSecure = ogImage.startsWith('https://') ? ogImage : undefined
 
+  useLayoutEffect(() => {
+    document.title = fullTitle
+  }, [fullTitle])
+
   return (
     <Helmet prioritizeSeoTags>
-      <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={SEO_KEYWORDS} />
       <meta name="author" content="SeleLab" />
-      <meta name="referrer" content="strict-origin-when-cross-origin" />
       <meta
         name="robots"
         content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'}

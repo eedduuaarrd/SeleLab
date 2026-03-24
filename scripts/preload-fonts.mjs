@@ -56,12 +56,12 @@ if (!html.includes('<head>')) {
   process.exit(0)
 }
 
-// Després de charset (ha de ser entre els primers bytes del document; no injectar just després de <head>)
+// Després de charset (primer al <head>). Si falta (alguns builds), el creem nosaltres.
 const charsetRe = /(<meta\s+charset=["']utf-8["']\s*\/?>)/i
 if (charsetRe.test(html)) {
   html = html.replace(charsetRe, `$1\n${block}`)
 } else {
-  html = html.replace('<head>', `<head>\n${block}`)
+  html = html.replace('<head>', `<head>\n    <meta charset="UTF-8" />\n${block}`)
 }
 writeFileSync(htmlPath, html)
 console.log(`[preload-fonts] ${picked.length} woff2 prioritzats`)
