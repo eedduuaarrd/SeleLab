@@ -1,6 +1,6 @@
 /**
  * Després de `vite build`, reemplaça https://selelab.xyz per VITE_SITE_URL al dist/
- * (index.html, robots, sitemap, manifest, og.svg). A Vercel, defineix VITE_SITE_URL=https://selelab.cat
+ * (index.html, robots, sitemap, manifest, og.svg). Producció: https://selelab.xyz (o deixa VITE_SITE_URL buit).
  */
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { dirname, join } from 'path'

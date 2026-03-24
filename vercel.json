@@ -5,12 +5,6 @@
       "has": [{ "type": "host", "value": "www.selelab.xyz" }],
       "destination": "https://selelab.xyz/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.selelab.cat" }],
-      "destination": "https://selelab.cat/:path*",
-      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
