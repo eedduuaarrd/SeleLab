@@ -1,6 +1,7 @@
 /**
  * Últim pas del build: injecta meta google-site-verification al dist/index.html
  * (després de preload-fonts). Defineix VITE_GOOGLE_SITE_VERIFICATION a Vercel.
+ * S’insereix just després de charset (no al començament de <head>).
  */
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { dirname, join } from 'path'
@@ -22,6 +23,12 @@ if (html.includes('name="google-site-verification"')) {
 }
 
 const esc = gsc.replace(/"/g, '&quot;')
-html = html.replace('<head>', `<head>\n    <meta name="google-site-verification" content="${esc}" />`)
+const meta = `\n    <meta name="google-site-verification" content="${esc}" />`
+const charsetRe = /(<meta\s+charset=["']utf-8["']\s*\/?>)/i
+if (charsetRe.test(html)) {
+  html = html.replace(charsetRe, `$1${meta}`)
+} else {
+  html = html.replace('<head>', `<head>${meta}`)
+}
 writeFileSync(indexPath, html)
 console.log('[inject-gsc] Google Search Console: meta verificació injectada')

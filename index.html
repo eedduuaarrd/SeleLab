@@ -10,28 +10,10 @@
     <meta name="apple-mobile-web-app-title" content="SeleLab" />
     <meta name="theme-color" content="#14141a" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#14141a" media="(prefers-color-scheme: light)" />
-    <!-- Meta descripció al HTML estàtic: Lighthouse i cercadors la veuen abans de l’SPA -->
-    <meta
-      name="description"
-      content="Tests de sele i selectivitat (PAU) a Catalunya: testos i preguntes dels models oficials de la Generalitat, pràctica interactiva per assignatura, simulador i enllaços a Selecat i el Canal Universitats. SeleLab."
-    />
+    <!-- Títol, description, canonical i Open Graph els gestiona SeoHead (react-helmet-async) per evitar duplicats al <head>. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="canonical" href="https://selelab.xyz/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://selelab.xyz/" />
-    <meta
-      property="og:title"
-      content="Sele, tests i selectivitat (PAU) — testos oficials · Catalunya · SeleLab"
-    />
-    <meta
-      property="og:description"
-      content="Tests de sele i selectivitat (PAU) a Catalunya: testos i preguntes dels models oficials de la Generalitat, pràctica interactiva per assignatura, simulador i enllaços a Selecat i el Canal Universitats. SeleLab."
-    />
-    <meta property="og:image" content="https://selelab.xyz/og.svg" />
-    <meta property="og:image:secure_url" content="https://selelab.xyz/og.svg" />
-    <meta name="twitter:card" content="summary_large_image" />
     <!-- Estil crític mínim: primer pintat abans del bundle CSS/JS (millora LCP mòbil) -->
     <style>
       html {
@@ -44,7 +26,6 @@
       }
     </style>
     <!-- Search Console: defineix VITE_GOOGLE_SITE_VERIFICATION a Vercel (es injecta al build, vegeu scripts/inject-gsc.mjs). -->
-    <title>Sele, tests i selectivitat (PAU) — testos oficials · Catalunya · SeleLab</title>
   </head>
   <body>
     <div id="root"></div>
