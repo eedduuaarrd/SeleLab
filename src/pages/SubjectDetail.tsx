@@ -99,7 +99,7 @@ export function SubjectDetail() {
     </ul>
   )
 
-  const subjectDesc = `${s.name}. ${s.description}`
+  const subjectDesc = s.description.trim() ? `${s.name}. ${s.description}` : s.name
 
   return (
     <div className="space-y-12">
@@ -130,7 +130,9 @@ export function SubjectDetail() {
             <h1 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-[var(--ink)] sm:text-4xl">
               {s.short}
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--ink-muted)]">{s.description}</p>
+            {s.description.trim() ? (
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--ink-muted)]">{s.description}</p>
+            ) : null}
             <p className="mt-4 max-w-2xl font-mono-label text-[10px] uppercase leading-relaxed tracking-[0.12em] text-[var(--ink-muted)]">
               Trieu «Proves d’accés» per preguntes extretes dels PDF oficials, o «Pràctica interactiva» per al banc
               SeleLab d’aquesta matèria.

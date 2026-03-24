@@ -61,7 +61,7 @@ const baseSubjects: Subject[] = [
     short: 'Català',
     area: 'general',
     accent: 'border-l-4 border-l-[#b8a060]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('catala'),
   },
   {
@@ -70,7 +70,7 @@ const baseSubjects: Subject[] = [
     short: 'Castellà',
     area: 'general',
     accent: 'border-l-4 border-l-[#c4706a]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('castella'),
   },
   {
@@ -79,7 +79,7 @@ const baseSubjects: Subject[] = [
     short: 'Anglès',
     area: 'general',
     accent: 'border-l-4 border-l-[#6a9ec4]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('angles'),
   },
   {
@@ -88,7 +88,7 @@ const baseSubjects: Subject[] = [
     short: 'Història',
     area: 'humanitats',
     accent: 'border-l-4 border-l-[#d4a03c]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('historia'),
   },
   {
@@ -97,7 +97,7 @@ const baseSubjects: Subject[] = [
     short: 'Filosofia',
     area: 'humanitats',
     accent: 'border-l-4 border-l-[#9a8b9e]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('filosofia'),
   },
   {
@@ -106,7 +106,7 @@ const baseSubjects: Subject[] = [
     short: 'Matemàtiques',
     area: 'ciencies',
     accent: 'border-l-4 border-l-[#4db8c4]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('matematiques'),
   },
   {
@@ -115,7 +115,7 @@ const baseSubjects: Subject[] = [
     short: 'Física',
     area: 'ciencies',
     accent: 'border-l-4 border-l-[#6b8fc9]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('fisica'),
   },
   {
@@ -124,7 +124,7 @@ const baseSubjects: Subject[] = [
     short: 'Química',
     area: 'ciencies',
     accent: 'border-l-4 border-l-[#9bc85c]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('quimica'),
   },
   {
@@ -133,7 +133,7 @@ const baseSubjects: Subject[] = [
     short: 'Biologia',
     area: 'ciencies',
     accent: 'border-l-4 border-l-[#6fb07a]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('biologia'),
   },
   {
@@ -152,7 +152,7 @@ const baseSubjects: Subject[] = [
     short: 'H. de l’art',
     area: 'artistica',
     accent: 'border-l-4 border-l-[#c98a9b]',
-    description: 'Només materials extrets dels models oficials de prova d’accés.',
+    description: '',
     activities: activitiesFor('historia-art'),
   },
 ]

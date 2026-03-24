@@ -204,9 +204,13 @@ export function Home() {
                   <h3 className="font-display mt-4 text-lg font-bold leading-tight text-[var(--ink)]">
                     {s.short}
                   </h3>
-                  <p className="mt-2 line-clamp-2 flex-1 text-sm leading-snug text-[var(--ink-muted)]">
-                    {s.description}
-                  </p>
+                  {s.description ? (
+                    <p className="mt-2 line-clamp-2 flex-1 text-sm leading-snug text-[var(--ink-muted)]">
+                      {s.description}
+                    </p>
+                  ) : (
+                    <div className="min-h-0 flex-1" aria-hidden />
+                  )}
                   <div className="mt-4 flex items-center justify-between border-t border-[var(--line)] pt-4">
                     {totalAct > 0 && (
                       <span className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--ink-muted)]">
