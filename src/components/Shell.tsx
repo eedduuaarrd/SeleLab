@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { SITE_URL } from '../config/site'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   [
@@ -53,6 +54,14 @@ export function Shell() {
           <p className="mx-auto max-w-2xl px-4 text-center font-mono-label text-[10px] uppercase leading-relaxed tracking-[0.12em] text-[var(--ink-muted)] sm:px-6">
             Les preguntes «Proves d’accés» provenen dels PDF oficials. La «Pràctica interactiva» és un banc
             SeleLab per matèria (enllaç al portal de models PAU).
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl px-4 text-center sm:px-6">
+            <a
+              href={SITE_URL}
+              className="font-mono-label text-[10px] uppercase tracking-[0.14em] text-[var(--accent)] hover:underline"
+            >
+              selelab.xyz
+            </a>
           </p>
         </footer>
       </div>
